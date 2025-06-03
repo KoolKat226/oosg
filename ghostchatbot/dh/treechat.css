@@ -1,0 +1,41 @@
+/* treechat layout (do not edit, for changing colors etc. edit treechat-style.css) */
+
+.treechat {
+    padding: 0;
+    margin: 0;
+}
+.treechat li {
+    list-style: none;
+}
+.treechat .indent {
+    margin-left: 2ex;
+}
+.treechat .indent:first-child {
+    margin-left: 0;
+}
+.treechat .header {
+    display: block;
+}
+.treechat .id {
+    display: inline-block;
+}
+.treechat .time {
+    display: inline-block;
+}
+.treechat .message {
+    white-space: pre-line;
+}
+.treechat .new {
+    color: green;
+}
+.treechat .replies {
+    float: right;
+}
+.treechat .reply {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 4em;
+    resize: vertical;
+}
+

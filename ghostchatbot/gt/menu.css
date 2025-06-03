@@ -1,0 +1,32 @@
+.menu {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #6daa2c;
+    padding: 1cm;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    z-index: 10;
+}
+.menu h1, .menu h2 {
+    margin: 0;
+    text-align: center;
+}
+.menu .main {
+    font-size: large;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 1ex;
+}
+.menu .main .item {
+    display: block;
+    min-height: 1cm;
+    margin-bottom: 1ex;
+}
+.menu .main .item .subtitle {
+    color: gray;
+    color: rgba(0,0,0,0.5);
+}

@@ -1,0 +1,73 @@
+/* Shop's style sheet */
+
+.gt_shop {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+
+    color: #1e0d0d;
+    background-color: #f6efe2;
+    margin: 0;
+    padding: 0.3ex;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-size: medium;
+    display: flex;
+    flex-direction: column;
+    z-index: 1200;
+}
+
+.gt_shop .compact {
+    font-size: x-small;
+}
+
+.gt_shop h1.compact {
+    font-size: medium;
+}
+
+.gt_shop nav {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.gt_shop nav span {
+    text-align: center;
+    min-width: 1cm;
+    margin: 0;
+}
+.gt_shop nav h1 {
+    text-align: center;
+    flex: 1;
+    margin: 0;
+}
+.gt_shop nav button {
+    text-align: center;
+    background-color: transparent;
+    border: 0;
+    width: 0.7cm;
+    height: 1cm;
+}
+
+.gt_shop .items {
+    overflow-y: scroll;
+    flex: 1;
+    border-top: 2px solid black;
+}
+
+.gt_shop .items table tr td {
+    border-bottom: 1px dotted black;
+}
+.gt_shop .items table tr td button {
+    width: 100%;
+    font-size: inherit;
+}
+.gt_shop .items table tr td.description {
+    width: 100%;
+    vertical-align: top;
+    /* word-break: break-word; */
+}
+
+

@@ -1,0 +1,516 @@
+- console2
+- spinner fix
+- Android.showToast pointer events none
+
+2019-09-21
+- chartxy axisColor and axisColor2 options
+- added sha256
+- cookie now supports BillingStorage
+- added console_dummy
+- added console unlocking
+
+2019-09-06
+- faster transitions
+
+2019-08-30
+- DH.sound.flat=true will allow DH.sound.play to ignore directory structure
+
+2019-08-09
+- removed old billing
+- allow html in old options
+- fixed lip with html element
+
+2019-08-04
+- splash disabled buttons css
+- console normal font and line height
+
+2019-07-28
+- spinner less likely to crash
+- options2 multiple buttons in second column
+
+2019-06-30
+- make lip callback optional
+
+2019-06-21
+- added perf
+- popup scrollable if too big
+
+2019-04-12
+- added json request
+- added treechat
+- android portrait/landscape
+- android fullscreen
+
+2019-03-28
+- Android.isConnectedWifi() dummy function
+- chrome packaged app fix for Android.loadUrl
+- added fake storage
+
+2019-03-13
+- console showRaw hide on double tap
+
+2019-02-09
+- DH.options2 now returns object
+
+2019-02-01
+- DH.sound.enabled
+
+2018-11-07
+- don't send metrics on android if no wifi
+- fixed lip background
+- added image
+- added fadeOut to sound
+- added groups to sound
+- allow splash to disable bg click
+
+2018-08-29
+- function to change lip color
+- added angle to touchpad
+- minimal mouse support for touchpad
+
+2018-08-25
+- ads for my 2 other apps
+- don't allow map editor in jail
+
+2018-08-16
+- mobile feature preview
+
+2018-08-13
+- added warning about very old chrome to feedback
+- added DH.date.yesterday()
+- billing improvements
+
+2018-07-26
+- secondary menu in context menu
+- removed API reference from README
+- added speech recognition api
+
+2018-07-18
+- text to speech support
+
+2018-07-16
+- fixed lip closing
+- added paid features preview
+
+2018-07-13
+- added lip
+- added buttonsArray to splash return
+
+2018-06-29
+- options2 with better api
+- Android.billingPurchaseNice()
+
+2018-06-28
+- added h1 and separator to options
+
+2018-06-27
+- fixed flash item color in dark theme
+- options support for checkbox
+
+2018-06-25
+- color theme support for options and feedback
+- added classes to contextmenu
+
+2018-06-24
+- added Android billing
+- added flash
+
+2018-06-18
+- allow hiding options
+- fixed console table
+
+2018-06-16
+- added minHeight to options
+- custom html in options
+
+2018-06-14
+- fixed console clear
+- added Android.clearCache
+
+2018-06-13
+- Added button support to options
+
+2018-06-09
+- Changed splash API to work both for info and prompt dialogs
+
+2018-06-08
+- Enter will choose first button in splash, bg will optionally do first button click
+
+2018-05-26
+- added remote error logger
+- center touchpad on hide
+
+2018-05-25
+- better console
+
+2018-05-23
+- fixed import2 on desktop
+
+2018-05-20
+- added quests
+
+2018-05-12
+- fixed music autoplay on first gesture
+
+2018-05-11
+- better console output
+
+2018-05-08
+- storage API now compatible with storage3
+- added DH.storage.asyncOnly() and DH.storage3.asyncOnly()
+
+2018-05-07
+- storage3 support for cookie
+- fixed cookie using storage3
+- added DH.storage3.ops
+
+2018-04-30
+- fixed latency in music changing
+
+2018-04-29
+- less verbose metrics
+
+2018-04-28
+- added splash
+- storage read/write measuring
+- added music.next
+
+2018-04-24
+- added music manager
+
+2018-04-21
+- added tags input
+- added popup
+
+2018-04-14
+- fixed desktop android backend
+- added Android.setParam, Android.getParam
+
+2018-04-12
+- added sound manager
+
+2018-04-09
+- added Android.reload()
+
+2018-03-19
+- added feedback form for existing components
+
+2018-03-14
+- fixed console.js and android.js for packaged chrome apps
+- added storage3 for packaged chrome apps
+
+2018-02-24
+- leap year function
+
+2018-02-19
+- added showing android console messages to console
+
+2018-02-18
+- Added DH.storage.inc(aKey, aDefault)
+
+2018-02-16
+- Feedback form returns elements
+
+2018-02-13
+- Stop touchpad events when hidden
+
+2018-02-11
+- Added GT.touchpad.visible indicator
+
+2018-02-08
+- Added touchpad
+
+2018-01-23
+- Allow string canvas id in chartXY 
+
+2018-01-04
+- Android history and requests functions
+
+2017-12-29
+- don't copy if no data in clipboard2
+
+2017-12-28
+- optional label for DH.copyToClipboard2
+
+2017-12-22
+- Fixed import2 callback
+- Removed alert from android export because it has toast
+- Android write permissions
+
+2017-12-21
+- Added import2
+- Added tasks
+
+2017-12-18
+- Android.setUserAgent
+
+2017-12-13
+- added Android.loadUrl(aUrl)
+
+2017-12-12
+- removed storage2 from demo
+- removed slow hypot from levenshtein (now 30% faster)
+- removed demo from release
+
+2017-12-11
+- limit metrics to 3 pending events
+
+2017-12-10
+- added application metrics logging
+
+2017-12-08
+- showing console on multiple clicks now allow specify clicked element
+
+2017-12-02
+- fixed typo in console
+
+2017-12-01
+- fixed feedback zIndex
+
+2017-11-30
+- added dummy Android object
+- added DH.instructionsParagraph
+
+2017-11-28
+- minor zIndex tweaks
+- instructions now supports html elements instead of text
+
+2017-11-26
+- fixed calling DH.meter.inc() after it was hidden
+
+2017-11-25
+- rearranged zIndex (alert 110, confirm 109, contextmenu 108, console 107, browser 106, instructions 105)
+
+2017-11-24
+- added DH.cron
+- added DH.date.yyyy
+
+2017-11-20
+- added DH.console.stringify
+- added DH.date.dowName(aDate, aLanguage)
+
+2017-11-18
+- added DH.table for table sorting
+- fixed chartxy rendering for chart with single value
+
+2017-11-17
+- force showing all instructions and better first scroll
+
+2017-11-16
+- added DH.instructions
+
+2017-11-15
+- added DH.chartXY
+
+2017-11-13
+- added DH.upload
+- added DH.date.yyyymm
+
+2017-11-12
+- added DH.copyToClipboard2
+
+2017-11-11
+- added DH.download(aUrl, aName) to export
+
+2017-11-10
+- show total size in DH.storage.debug()
+- added clear, close and run button to console.show
+
+2017-11-09
+- renamed DH.request.debuging to debugging
+- added DH.top()
+- added DH.browser(aUrl)
+- added DH.date.epoch()
+
+2017-11-07
+- added DH.date.daysBetween(aThen, aNow)
+
+2017-11-06
+- added DH.storage.sizeAll and DH.storage.debug()
+
+2017-10-13
+- added DH.date.calendar(date, language)
+
+2017-09-10
+- added cancel callback to import
+- added h1 to result of import function
+- fixed focus in options
+
+2017-09-03
+- added DH.date.dd()
+- fixed console zIndex
+
+2017-07-30
+- added limit to DH.request.requests, 20 by default
+
+2017-07-01
+- added zero margin to options
+- added focus hint to options
+- options now returns div
+
+2017-04-13
+- added DH.console.disable and enable commands
+
+2017-04-04
+- fixed weird bug in init
+
+2017-03-26
+- fixed alert when hiding manually
+- fixed export on android
+
+2017-03-25
+- alert hiding will prevent default event to propagate
+
+2017-03-20
+- added console.showRaw
+
+2017-03-19
+- added bind to focus manager to improve multiple elements with focus
+- import now returns its div, textarea and buttons
+
+2017-03-18
+- meter.work call multiple callbacks and show progress
+
+2017-03-15
+- added meter
+
+2017-03-05
+- added context menu
+- added focus manager
+- added green method for alert
+- added unique className to alert, confirm, options, feedback
+- removed resize style attribute from feedback textarea
+
+2017-02-26
+- in alert changed close button to small X and made entire alert clickable
+
+2017-02-04
+- fixed option password width
+
+2017-01-24
+- better export support on android and chrome extension
+
+2017-01-14
+- added DH.storage (local storage wrapper with extra type checks and conversions)
+
+2017-01-06
+- added DH.date.hhmm(d)
+
+2017-01-03
+- added support for export on android webview
+
+2016-12-27
+- added option to disable console by setting DH.console=0 in localStorage
+
+2016-12-26
+- console shows errors and warnings first
+- added checks in console whether limit is working
+
+2016-12-22
+- added DH.copyToClipboard
+- added console limit
+- added throw wrapper to type
+- array detection using Array.isArray()
+
+2016-12-18
+- DH.throw moved from console to separate file
+
+2016-12-04
+- added DH.throw
+
+2016-11-29
+- added console replacement where console is not accessible (WebView)
+
+2016-11-06
+- removed demo from documentation
+
+2016-11-02
+- fixed options input width for url, email
+- fixed last note in options
+
+2016-10-22
+- added optional title to options
+
+2016-10-04
+- allow options not to have callback
+
+2016-10-02
+- fixed type hint in options
+
+2016-09-28
+- better feedback form layout for email
+
+2016-09-13
+- added demo page
+- fixed DH.alert when callback is missing
+- minor cleanups
+- fixed options when trying to change type of select element
+- improved init demo
+- minor fixes with undefined events in callbacks
+- fixed undefined chrome reference
+
+2016-05-14
+- DH.type.isNumber(0/0) now return false (NaN)
+- added callback to DH.alert (4th param)
+- added callback to DH.export (4th param)
+
+2016-05-04
+- fixed DH.storage2.write callback for localStorage
+
+2016-05-03
+- fixed splice in DH.init and better await comment
+
+2016-04-28
+- added DH.init (asynchronous object initializer with dependencies)
+
+2016-04-21
+- DH.confirm now also returns array of buttons
+
+2016-03-27
+- added options
+- replaces innerText with textContent
+- get rid of 2 linter warnings in type.js
+- alert now use Close button instead of black X
+
+2016-01-18
+- removed console.log from request
+
+2016-01-17
+- removed original storage
+- added cookie.js
+
+2016-01-16
+- fixed confirm dialog left position and border
+- improved export using blob object
+
+2016-01-06
+- added optional qwerty distance to levenshtein
+- fixed export for more than 1.5 MB
+
+2016-01-02
+- added "// require: ..." for all files
+- added optional GET method to request
+
+2015-12-13
+- added second version of storage
+
+2015-12-05
+- double quotes in all "use strict" statements
+
+2015-11-30
+- added sha1 function
+
+2015-11-29
+- improved reload (now only active in apps)
+- added new storage2 (does not require init, no aKey in callbacks, better remove, not released yet)
+
+2015-11-28
+- added feedback form
+- fixed import form height
+- fixed DH.alert for boolean parameter
+
+2015-11-26
+- changed warning for old style request to include parameter list
+
+2015-11-08
+- first release

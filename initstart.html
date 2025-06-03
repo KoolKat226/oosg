@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+  <title>OlexOS 7 Offline Feature: Games</title>
+  <style>
+    /* ===== Reset + Basic Layout ===== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* ===== Container ===== */
+    .save-container {
+      width: 100%;
+      max-width: 600px;
+      margin-top: 50px;
+      background: #fff;
+      border-radius: 28px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      text-align: center;
+    }
+    .logo {
+      margin-bottom: 30px;
+    }
+    .logo img {
+      height: 80px;
+      width: auto;
+    }
+
+    /* ===== Progress Bar ===== */
+    .progress-wrapper {
+      width: 100%;
+      background-color: #eee;
+      border-radius: 25px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      width: 0%;
+      height: 20px;
+      background-color: #4CAF50;
+      transition: width 0.2s ease-in-out;
+    }
+    .progress-text {
+      margin-top: 10px;
+      font-size: 14px;
+    }
+    .status {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #666;
+      min-height: 1.2em;
+    }
+  </style>
+</head>
+<body>
+  <div class="save-container">
+    <!-- Your logo (adjust path if needed) -->
+    <div class="logo">
+      <img src="./oosgames.png" alt="My Logo" />
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress-wrapper">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <div class="progress-text" id="progress-text">0 / 0</div>
+    <div class="status" id="status-text">
+      ‣ Registering service worker...
+    </div>
+  </div>
+
+  <script>
+    // -------------------------------------
+    // 1) Configuration
+    // -------------------------------------
+    const CACHE_NAME = 'oosgames';
+    const START_URL = '/';                // Root of your site
+    const ORIGIN = window.location.origin; // e.g. "https://yourdomain.com"
+    const MAX_PAGES = 1000;                // Safety cap on number of pages
+
+    // Pages that aren’t linked anywhere can be forced here:
+    const EXTRA_URLS = [
+      '/retrobowl/index.html',
+      '/subwaysurfers/index.html',
+      '/mk64/index.html',
+      '/funnyshooter2/index.html',
+      '/eos3/index.html',
+      '/doodlejump/index.html',
+      '/corbin/index.html',
+      '/ghostchatbot/index.html',
+      '/happyfriday/index.html',
+      '/cube/index.html',
+      '/spelunky/index.html',
+      '/minecraft/index.html',
+      '/index.html',
+      // …etc
+    ];
+
+    // -------------------------------------
+    // 2) DOM References
+    // -------------------------------------
+    const progressBarEl   = document.getElementById('progress-bar');
+    const progressTextEl  = document.getElementById('progress-text');
+    const statusTextEl    = document.getElementById('status-text');
+
+    // -------------------------------------
+    // 3) Register Service Worker at root
+    // -------------------------------------
+    async function registerServiceWorker() {
+      if (!('serviceWorker' in navigator)) {
+        statusTextEl.textContent = '❌ Failed to install OOS Game Library';
+        throw new Error('SW unsupported');
+      }
+      try {
+        const reg = await navigator.serviceWorker.register('/service-worker.js');
+        statusTextEl.textContent = 'Service worker registered. Waiting for activation…';
+        await navigator.serviceWorker.ready;
+        statusTextEl.textContent = 'Service worker is active.';
+      } catch (err) {
+        console.error('SW registration failed:', err);
+        statusTextEl.textContent = '❌ Failed to install OOS Game Library';
+        throw err;
+      }
+    }
+
+    // -------------------------------------
+    // 4) Crawl the site to collect ALL page URLs
+    //    (fetch + parse <a href> links)
+    // -------------------------------------
+    async function crawlSiteAndCollectPageURLs() {
+      const visitedPages = new Set();
+      const queue = [new URL(START_URL, ORIGIN).href];
+      const collectedPages = new Set();
+
+      // Seed “extra” orphan URLs
+      EXTRA_URLS.forEach((rel) => {
+        try {
+          const abs = new URL(rel, ORIGIN).href;
+          if (abs.startsWith(ORIGIN)) queue.push(abs);
+        } catch (_) {}
+      });
+
+      while (queue.length > 0 && visitedPages.size < MAX_PAGES) {
+        const pageURL = queue.shift();
+        if (visitedPages.has(pageURL)) continue;
+        visitedPages.add(pageURL);
+
+        statusTextEl.textContent = `🔍 Verifying Content (${visitedPages.size}): `;
+        let htmlText;
+        try {
+          const resp = await fetch(pageURL, { credentials: 'same-origin' });
+          if (!resp.ok) continue;
+          htmlText = await resp.text();
+        } catch (err) {
+          console.warn('Error fetching page for crawl:', pageURL, err);
+          continue;
+        }
+
+        collectedPages.add(pageURL);
+
+        // Parse for same-origin <a href> links
+        const doc = new DOMParser().parseFromString(htmlText, 'text/html');
+        doc.querySelectorAll('a[href]').forEach((anchor) => {
+          const raw = anchor.getAttribute('href');
+          if (
+            raw &&
+            !raw.startsWith('mailto:') &&
+            !raw.startsWith('tel:') &&
+            !raw.startsWith('javascript:') &&
+            !raw.startsWith('#')
+          ) {
+            try {
+              const abs = new URL(raw, pageURL).href;
+              if (abs.startsWith(ORIGIN) && !visitedPages.has(abs)) {
+                queue.push(abs);
+              }
+            } catch (_) {}
+          }
+        });
+      }
+
+      return Array.from(collectedPages);
+    }
+
+    // -------------------------------------
+    // 5) For each page URL:
+    //    • Load in a hidden <iframe> (no sandbox)
+    //    • Wait for it to load + a brief delay
+    //    • Call iframe.contentWindow.__getAllAssets()
+    //      (the helper we inserted into each page)
+    //    • Collect that array of URLs + the page URL itself
+    // -------------------------------------
+    async function discoverAssetsFromPages(pageURLs) {
+      const discoveredAssets = new Set();
+
+      for (let i = 0; i < pageURLs.length; i++) {
+        const pageURL = pageURLs[i];
+        statusTextEl.textContent = `🔄 Discovering & Downloading OOS Game Library (${i + 1}/${pageURLs.length}): `;
+
+        // 1) Create a hidden iframe
+        const iframe = document.createElement('iframe');
+        iframe.style.position = 'fixed';
+        iframe.style.left = '-9999px';
+        iframe.style.top = '-9999px';
+        iframe.style.width = '1px';
+        iframe.style.height = '1px';
+        iframe.src = pageURL;
+        document.body.appendChild(iframe);
+
+        // 2) Wait for it to finish loading (or timeout)
+        await new Promise((resolve) => {
+          let resolved = false;
+          iframe.addEventListener('load', () => {
+            if (!resolved) {
+              resolved = true;
+              resolve();
+            }
+          });
+          setTimeout(() => {
+            if (!resolved) {
+              resolved = true;
+              console.warn('Iframe load timeout:', pageURL);
+              resolve();
+            }
+          }, 15000); // 15s max
+        });
+
+        // 3) Wait an extra 1 second so any JS-injected assets can appear 
+        await new Promise(r => setTimeout(r, 1000));
+
+        // 4) Call the helper __getAllAssets() that was added to each page
+        try {
+          const win = iframe.contentWindow;
+          if (win && typeof win.__getAllAssets === 'function') {
+            // Add the page URL itself
+            discoveredAssets.add(pageURL);
+
+            // Get an array of all assets that page might need
+            const assets = await win.__getAllAssets();
+            assets.forEach(u => discoveredAssets.add(u));
+          } else {
+            console.warn('Helper __getAllAssets() not found on page:', pageURL);
+          }
+        } catch (err) {
+          console.warn('Could not invoke __getAllAssets() on iframe:', pageURL, err);
+        }
+
+        // 5) Remove the iframe before moving on
+        document.body.removeChild(iframe);
+      }
+
+      return Array.from(discoveredAssets);
+    }
+
+    // -------------------------------------
+    // 6) Cache every page + discovered asset URL
+    // -------------------------------------
+    async function cacheAllResources(urls) {
+      let cache;
+      try {
+        cache = await caches.open(CACHE_NAME);
+      } catch (err) {
+        console.error('Could not open cache:', err);
+        throw err;
+      }
+
+      const total = urls.length;
+      let count = 0;
+
+      for (let resourceURL of urls) {
+        try {
+          // Use cache.add() (which does fetch + store)
+          await cache.add(resourceURL);
+        } catch (err) {
+          console.warn('Failed to cache:', resourceURL, err);
+        } finally {
+          count++;
+          const pct = Math.round((count / total) * 100);
+          progressBarEl.style.width = pct + '%';
+          progressTextEl.textContent = `${count} / ${total}`;
+        }
+      }
+
+      statusTextEl.textContent = '✅ OOS Game Library installed!';
+      window.location.href = './indexwithmiis.html';
+    }
+
+    // -------------------------------------
+    // 7) Main orchestration
+    // -------------------------------------
+    async function runSaveProcess() {
+      try {
+        await registerServiceWorker();
+      } catch {
+        return; // abort if SW registration fails
+      }
+
+      // A) Crawl to get all page URLs
+      statusTextEl.textContent = '🔍 Verifying OOS Game Library assets...';
+      let pageURLs = [];
+      try {
+        pageURLs = await crawlSiteAndCollectPageURLs();
+      } catch (err) {
+        console.error('Crawling error:', err);
+        statusTextEl.textContent = '❌ Unexpected Error, close and reopen.';
+        return;
+      }
+
+      if (pageURLs.length === 0) {
+        statusTextEl.textContent = '⚠️ OOS Game Library is unavailable';
+        return;
+      }
+
+      // B) For each page, load in iframe and call __getAllAssets()
+      statusTextEl.textContent = `🔄 Discovering assets from ${pageURLs.length} games…`;
+      let allURLs;
+      try {
+        const assetURLs = await discoverAssetsFromPages(pageURLs);
+        // Merge the page URLs + the asset URLs, de-duped
+        const merged = new Set([...pageURLs, ...assetURLs]);
+        allURLs = Array.from(merged);
+      } catch (err) {
+        console.error('Asset discovery error:', err);
+        statusTextEl.textContent = '❌ Error during asset scan.';
+        return;
+      }
+
+      // C) Cache everything
+      statusTextEl.textContent = `📥 Downloading ${allURLs.length} total resources…`;
+      await cacheAllResources(allURLs);
+    }
+
+    // Kick off once the page loads
+    window.addEventListener('load', () => {
+      runSaveProcess();
+    });
+  </script>
+</body>
+</html>

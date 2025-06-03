@@ -1,0 +1,130 @@
+.dh_options2 {
+    position: fixed;
+    left: 40vw;
+    top: 40vh;
+    width: 20vw;
+    height: 20vh;
+    opacity: 0;
+    background-color: silver;
+    /*
+    border: 1px solid orange;
+    */
+    box-sizing: border-box;
+    overflow-y: auto;
+    transition: opacity 0.2s linear;
+    /*
+    transition:
+        opacity 0.2s cubic-bezier(1.000, -0.530, 0.405, 1.425),
+        left 0.2s cubic-bezier(1.000, -0.530, 0.405, 1.425),
+        top 0.2s cubic-bezier(1.000, -0.530, 0.405, 1.425),
+        width 0.2s cubic-bezier(1.000, -0.530, 0.405, 1.425),
+        height 0.2s cubic-bezier(1.000, -0.530, 0.405, 1.425);
+    */
+    outline: 1px solid gray;
+    padding: 1ex;
+}
+
+.dh_options2.visible {
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 1;
+}
+
+.dh_options2 table {
+    width: 100%;
+    /*
+    border: 1px solid red;
+    */
+}
+.dh_options2 table td {
+    /*
+    border: 1px solid orange;
+    */
+}
+
+.dh_options2 table td input[type=text] {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.dh_options2 input, .dh_options2 button, .dh_options2 select {
+    min-height: 0.9cm;
+}
+.dh_options2 input[type=checkbox] {
+    min-height: unset;
+    vertical-align: middle;
+}
+
+.dh_options2 h1 {
+    color: black;
+    margin: 0;
+    margin-top: 1em;
+    padding: 0;
+    font-size: large;
+    text-align: center;
+}
+.dh_options2 h2 {
+    color: black;
+    margin: 0;
+    margin-top: 1ex;
+    padding: 0;
+    font-size: large;
+    text-align: left;
+}
+.dh_options2 h1:first-child {
+    margin-top: 0;
+}
+
+.dh_options2 button.color {
+    min-width: 2.1cm;
+    min-height: 1cm;
+    margin-left: 0.5ex;
+    border: 0;
+    border-radius: 10px;
+    color: #FFF;
+    outline: none;
+}
+.dh_options2 button.blue {
+    background-color: #3498DB;
+    border-bottom: 5px solid #2980B9;
+    text-shadow: 0 -2px #2980B9;
+}
+.dh_options2 button.green {
+    background-color: #3c9;
+    border-bottom: 5px solid #3a8;
+    text-shadow: 0 -2px #3a8;
+}
+.dh_options2 button.green:active, .dh_options2 button.blue:active {
+    border-bottom-width: 2px;
+    opacity: 0.7;
+}
+
+.dh_options2 div.paid {
+    padding: 0.5ex;
+    border: 1px solid gray;
+    background-color: white;
+    border-radius: 1ex;
+    box-shadow: 0 0 0.5ex rgba(0,0,0,0.5);
+    margin-top: 0.5ex;
+    margin-bottom: 1ex;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.dh_options2 div.paid img {
+    margin-right: 1ex;
+}
+
+.dh_options2 div.paid div {
+    flex: 1;
+}
+
+.dh_options2 div.paid button {
+}
+
+.dh_options2 .savecancel {
+    text-align: center;
+}

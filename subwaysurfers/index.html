@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Subway Surfers</title>
+      <link rel="stylesheet" href=".../scss/global.processed.css">
+  <link rel="manifest" href=".../manifest.json">
+    <script type="text/javascript" src="4399.z.js"></script>
+    <script>
+        window.config = {
+            loader: 'unity',
+            debug: false,
+            maxRatio: 16 / 9,
+            minRatio: 9 / 16,
+
+            title: 'Subway Surfers: San Francisco',
+
+            unityVersion: '2019.4.18f1',
+            unityWebglBuildUrl: 'Build\/SanFrancisco\/SanFrancisco.json',
+
+            fileSize: 35,
+            cachedDecompressedFileSizes: {
+                'SanFrancisco.asm.code.unityweb': 9077143,
+                'SanFrancisco.asm.framework.unityweb': 86369,
+                'SanFrancisco.asm.memory.unityweb': 951447,
+                'SanFrancisco.data.unityweb': 18323917,
+                'SanFrancisco.wasm.code.unityweb': 7279617,
+                'SanFrancisco.wasm.framework.unityweb': 90693,
+            },
+        };
+    </script>
+      <script
+  document.addEventListener("keydown", function (event) {
+    if (event.ctrlKey) {
+        event.preventDefault();
+      </script>
+<script
+  language="JavaScript">
+function disableCtrlKeyCombination(e)
+{
+//list all CTRL + key combinations you want to disable
+var forbiddenKeys = new Array('i', 'n', 'c', 'x', 'v', 'j' , 'w');
+var key;
+var isCtrl;
+if(window.event)
+{
+key = window.event.keyCode;     //IE
+if(window.event.ctrlKey)
+isCtrl = true;
+else
+isCtrl = false;
+}
+else
+{
+key = e.which;     //firefox
+if(e.ctrlKey)
+isCtrl = true;
+else
+isCtrl = false;
+}
+//if ctrl is pressed check if other key is in forbidenKeys array
+if(isCtrl)
+{
+for(i=0; i<forbiddenKeys.length; i++)
+{
+//case-insensitive comparation
+if(forbiddenKeys[i].toLowerCase() == String.fromCharCode(key).toLowerCase())
+{
+alert('Key combination CTRL + '+String.fromCharCode(key) +' has been disabled.');
+return false;
+}
+}
+}
+return true;
+}
+</script>
+<body  onkeypress="return disableCtrlKeyCombination(event);" onkeydown="return disableCtrlKeyCombination(event);" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" </body>
+</head>
+
+<body>
+    <script src="master-loader.js"></script>
+    <script src=".../js/jquery.js"></script>
+  <script src=".../js/global.js"></script>
+</body>
+
+
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+/* default treechat style */
+
+.treechat {
+    margin: 0;
+    padding: 0;
+}
+.treechat ul {
+    padding-left: 1em;
+}
+.treechat li {
+    border: 1px solid rgba(0,0,0,0.1);
+    margin-bottom: 1ex;
+    padding: 0.5ex;
+    margin-top: 0.5ex;
+    background: white;
+    border-radius: 0.5ex;
+    box-shadow: 0.5ex 0.5ex 0.5ex rgba(0,0,0,0.2);
+}
+.treechat .indent {
+    margin-left: 2ex;
+}
+.treechat .indent:first-child {
+    margin-left: 0;
+}
+.treechat .header {
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    color: gray;
+}
+.treechat .id {
+    font-weight: bold;
+}
+.treechat .time {
+    font-style: italic;
+}
+.treechat .message {
+}
+.treechat .new:after {
+    content: "new";
+}
+.treechat .replies {
+}
+.treechat .replies:after {
+    content: "💬";
+}
+.treechat .reply {
+}
+

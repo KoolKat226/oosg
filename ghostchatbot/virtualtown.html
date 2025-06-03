@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Virtualtown</title>
+    <link rel="stylesheet" href="dh/splash.css" type="text/css" />
+    <link rel="stylesheet" href="virtualtown.css" type="text/css" />
+    <link rel="stylesheet" href="gt/editor.css" type="text/css" />
+    <link rel="stylesheet" href="gt/shop.css" type="text/css" />
+  </head>
+  <body>
+    <canvas class="full" id="background_canvas"></canvas>
+    <canvas class="full" id="character_canvas"></canvas>
+    <input id="question" placeholder="Type here" autofocus />
+    <div id="editor">
+        <button>&nbsp;</button>
+    </div>
+
+    <script type="text/javascript" src="dh/type.js"></script>
+    <script type="text/javascript" src="dh/assert.js"></script>
+    <script type="text/javascript" src="dh/init.js"></script>
+    <script type="text/javascript" src="dh/storage.js"></script>
+    <script type="text/javascript" src="dh/touchpad.js"></script>
+    <script type="text/javascript" src="dh/android.js"></script>
+    <script type="text/javascript" src="dh/feedback.js"></script>
+    <script type="text/javascript" src="dh/request.js"></script>
+    <script type="text/javascript" src="dh/cookie.js"></script>
+    <script type="text/javascript" src="dh/console.js"></script>
+    <script type="text/javascript" src="dh/sha1.js"></script>
+    <script type="text/javascript" src="dh/sound.js"></script>
+    <script type="text/javascript" src="dh/metrics.js"></script>
+    <script type="text/javascript" src="dh/splash.js"></script>
+
+    <script type="text/javascript" src="map/tileset/all.js"></script>
+    <script type="text/javascript" src="map/tileset/goods.js"></script>
+
+    <script type="text/javascript" src="map/basement_ken.js"></script>
+    <script type="text/javascript" src="map/basement_town_hall.js"></script>
+    <script type="text/javascript" src="map/gallery2.js"></script>
+    <script type="text/javascript" src="map/gallery3.js"></script>
+    <script type="text/javascript" src="map/ghosttown.js"></script>
+    <script type="text/javascript" src="map/jail2.js"></script>
+    <script type="text/javascript" src="map/library.js"></script>
+    <script type="text/javascript" src="map/quarry.js"></script>
+    <script type="text/javascript" src="map/tomb.js"></script>
+
+    <script type="text/javascript" src="gt/background.js"></script>
+    <script type="text/javascript" src="gt/canvas.js"></script>
+    <script type="text/javascript" src="gt/command.js"></script>
+    <script type="text/javascript" src="gt/character.js"></script>
+    <script type="text/javascript" src="gt/keyboard.js"></script>
+    <script type="text/javascript" src="gt/place.js"></script>
+    <script type="text/javascript" src="gt/map.js"></script>
+    <script type="text/javascript" src="gt/bubble.js"></script>
+    <script type="text/javascript" src="gt/gallery.js"></script>
+    <script type="text/javascript" src="gt/effect.js"></script>
+    <script type="text/javascript" src="gt/menu.js"></script>
+    <script type="text/javascript" src="gt/inventory.js"></script>
+    <script type="text/javascript" src="gt/editor.js"></script>
+    <script type="text/javascript" src="gt/shop.js"></script>
+
+    <script type="text/javascript" src="ghost/ghost.js"></script>
+    <script type="text/javascript" src="ghost/why.js"></script>
+    <script type="text/javascript" src="ghost/character/basic.js"></script>
+    <script type="text/javascript" src="ghost/character/ghost.js"></script>
+    <script type="text/javascript" src="ghost/character/relationship.js"></script>
+    <script type="text/javascript" src="ghost/character/ga.js"></script>
+    <script type="text/javascript" src="ghost/character/android.js"></script>
+    <script type="text/javascript" src="ghost/character/slang.js"></script>
+
+    <script type="text/javascript" src="character/banker.js"></script>
+    <script type="text/javascript" src="character/bug.js"></script>
+    <script type="text/javascript" src="character/core.js"></script>
+    <script type="text/javascript" src="character/craig.js"></script>
+    <script type="text/javascript" src="character/curator.js"></script>
+    <script type="text/javascript" src="character/firefighter.js"></script>
+    <script type="text/javascript" src="character/fisherman.js"></script>
+    <script type="text/javascript" src="character/founder_ghost.js"></script>
+    <script type="text/javascript" src="character/founder_ghost_casual.js"></script>
+    <script type="text/javascript" src="character/founder_skeleton.js"></script>
+    <script type="text/javascript" src="character/founder_skeleton_casual.js"></script>
+    <script type="text/javascript" src="character/frog.js"></script>
+    <script type="text/javascript" src="character/jane.js"></script>
+    <script type="text/javascript" src="character/john.js"></script>
+    <script type="text/javascript" src="character/ken.js"></script>
+    <script type="text/javascript" src="character/kim.js"></script>
+    <script type="text/javascript" src="character/kim_sick.js"></script>
+    <script type="text/javascript" src="character/mayor.js"></script>
+    <script type="text/javascript" src="character/mute.js"></script>
+    <script type="text/javascript" src="character/prisoner.js"></script>
+    <script type="text/javascript" src="character/prisoner_casual.js"></script>
+    <script type="text/javascript" src="character/shopkeeper.js"></script>
+    <script type="text/javascript" src="character/surveyor.js"></script>
+    <script type="text/javascript" src="character/villager.js"></script>
+    <script type="text/javascript" src="character/warden.js"></script>
+
+    <script type="text/javascript" src="character/ga_villager.js"></script>
+    <script type="text/javascript" src="character/ga_banker.js"></script>
+    <script type="text/javascript" src="character/ga_craig.js"></script>
+    <script type="text/javascript" src="character/ga_curator.js"></script>
+    <script type="text/javascript" src="character/ga_firefighter.js"></script>
+    <script type="text/javascript" src="character/ga_fisherman.js"></script>
+    <script type="text/javascript" src="character/ga_frog.js"></script>
+    <script type="text/javascript" src="character/ga_founder_ghost.js"></script>
+    <script type="text/javascript" src="character/ga_founder_skeleton.js"></script>
+    <script type="text/javascript" src="character/ga_jane.js"></script>
+    <script type="text/javascript" src="character/ga_john.js"></script>
+    <script type="text/javascript" src="character/ga_ken.js"></script>
+    <script type="text/javascript" src="character/ga_kim.js"></script>
+    <script type="text/javascript" src="character/ga_mayor.js"></script>
+    <script type="text/javascript" src="character/ga_prisoner.js"></script>
+    <script type="text/javascript" src="character/ga_shopkeeper.js"></script>
+    <script type="text/javascript" src="character/ga_shopkeeper2.js"></script>
+    <script type="text/javascript" src="character/ga_surveyor.js"></script>
+    <script type="text/javascript" src="character/ga_warden.js"></script>
+    <script type="text/javascript" src="character/ga_spider.js"></script>
+    <script type="text/javascript" src="character/ga_bat.js"></script>
+
+    <script type="text/javascript" src="cached.js"></script>
+    <script type="text/javascript" src="report-virtualtown.js"></script>
+    <script type="text/javascript" src="virtualtown.js"></script>
+
+  </body>
+</html>

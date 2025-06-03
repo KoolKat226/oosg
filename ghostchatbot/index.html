@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ghost</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="dh/splash.css" type="text/css" />
+    <link rel="stylesheet" href="dh/flash.css" type="text/css" />
+    <link rel="stylesheet" href="android.css" type="text/css" />
+    <link rel="shortcut icon" href="icon/16.png" type="image/png" />
+    <link rel="stylesheet" type="text/css" href="dh/options2.css">
+    <link id="theme" rel="stylesheet" type="text/css" href="theme_light.css">
+    <script
+  document.addEventListener("keydown", function (event) {
+    if (event.ctrlKey) {
+        event.preventDefault();
+      </script>
+<script
+  language="JavaScript">
+function disableCtrlKeyCombination(e)
+{
+//list all CTRL + key combinations you want to disable
+var forbiddenKeys = new Array('i', 'n', 'c', 'x', 'v', 'j' , 'w');
+var key;
+var isCtrl;
+if(window.event)
+{
+key = window.event.keyCode;     //IE
+if(window.event.ctrlKey)
+isCtrl = true;
+else
+isCtrl = false;
+}
+else
+{
+key = e.which;     //firefox
+if(e.ctrlKey)
+isCtrl = true;
+else
+isCtrl = false;
+}
+//if ctrl is pressed check if other key is in forbidenKeys array
+if(isCtrl)
+{
+for(i=0; i<forbiddenKeys.length; i++)
+{
+//case-insensitive comparation
+if(forbiddenKeys[i].toLowerCase() == String.fromCharCode(key).toLowerCase())
+{
+alert('Key combination CTRL + '+String.fromCharCode(key) +' has been disabled.');
+return false;
+}
+}
+}
+return true;
+}
+</script>
+<body  onkeypress="return disableCtrlKeyCombination(event);" onkeydown="return disableCtrlKeyCombination(event);" oncontextmenu="return false" onselectstart="return false" ondragstart="return false" </body>
+<body>
+  </head>
+  <body>
+
+
+    <div id="debug" style="display: none; padding: 4px; position: fixed; left: 1cm; top: 1cm; background-color: red; color: black; z-index: 999999;">debug
+        <!--
+        <style>#debug img { max-width: 20px; max-height: 20px; }</style>
+        A:<img src="file:///data/user/0/com.delphi_update.ghostchatbot/files/user.jpg">
+        B:<img src="http://appassets.androidplatform.net/internal/user.jpg">
+        C:<img src="https://appassets.androidplatform.net/internal/user.jpg">
+        -->
+    </div>
+
+    <div id="output">
+        <div id="container">
+        </div>
+    </div>
+
+    <div id="questionbox">
+        <button id="showmenu"></button>
+        <textarea id="question" autofocus placeholder="Type question here" maxlength="250"></textarea>
+        <button id="mic"></button>
+        <button id="ask"></button>
+    </div>
+
+    <script type="text/javascript" src="dh/console.js"></script>
+    <script type="text/javascript" src="dh/spinner.js"></script>
+    <script type="text/javascript" src="dh/alert.js"></script>
+    <script type="text/javascript" src="dh/assert.js"></script>
+    <script type="text/javascript" src="dh/confirm.js"></script>
+    <script type="text/javascript" src="dh/contextmenu.js"></script>
+    <script type="text/javascript" src="dh/date.js"></script>
+    <script type="text/javascript" src="dh/export.js"></script>
+    <script type="text/javascript" src="dh/import.js"></script>
+    <script type="text/javascript" src="dh/open.js"></script>
+    <script type="text/javascript" src="dh/focus.js"></script>
+    <script type="text/javascript" src="dh/reload.js"></script>
+    <script type="text/javascript" src="dh/request.js"></script>
+    <script type="text/javascript" src="dh/storage.js"></script>
+    <script type="text/javascript" src="dh/type.js"></script>
+    <script type="text/javascript" src="dh/levenshtein.js"></script>
+    <script type="text/javascript" src="dh/feedback.js"></script>
+    <script type="text/javascript" src="dh/options.js"></script>
+    <script type="text/javascript" src="dh/options2.js"></script>
+    <script type="text/javascript" src="dh/clipboard.js"></script>
+    <script type="text/javascript" src="dh/android.js"></script>
+    <script type="text/javascript" src="dh/sha1.js"></script>
+    <script type="text/javascript" src="dh/splash.js"></script>
+    <script type="text/javascript" src="dh/flash.js"></script>
+    <script type="text/javascript" src="dh/cookie.js"></script>
+    <script type="text/javascript" src="dh/metrics.js"></script>
+    <script type="text/javascript" src="dh/lip.js"></script>
+    <script type="text/javascript" src="dh/json.js"></script>
+    <script type="text/javascript" src="ads/ad.js"></script>
+    <script type="text/javascript" src="dh/localad.js"></script>
+
+    <!-- script type="text/javascript" src="billing/billing_storage_constant.js"></script>
+    <script type="text/javascript" src="billing/billing_storage.js"></script>
+    <script type="text/javascript" src="billing/billing_internal_chrome.js"></script>
+    <script type="text/javascript" src="billing/billing_nice.js"></script -->
+    <script type="text/javascript" src="billing/billing_free.js"></script>
+    <script type="text/javascript" src="billing.js"></script>
+
+    <script type="text/javascript" src="ghost/ghost.js"></script>
+    <script type="text/javascript" src="ghost/why.js"></script>
+    <script type="text/javascript" src="ghost/character/slang.js"></script>
+    <script type="text/javascript" src="ghost/character/basic.js"></script>
+    <script type="text/javascript" src="ghost/character/ghost.js"></script>
+    <script type="text/javascript" src="ghost/character/relationship.js"></script>
+    <script type="text/javascript" src="ghost/character/ga.js"></script>
+    <script type="text/javascript" src="ghost/character/android.js"></script>
+
+    <script type="text/javascript" src="nagging.js"></script>
+    <script type="text/javascript" src="cached.js"></script>
+    <script type="text/javascript" src="report-android.js"></script>
+    <script type="text/javascript" src="paid.js"></script>
+    <script type="text/javascript" src="android.js"></script>
+    <script type="text/javascript" src="edits.js"></script>
+    <script type="text/javascript" src="options2.js"></script>
+    <script type="text/javascript" src="math.js"></script>
+    <script type="text/javascript" src="release.js"></script>
+    <script type="text/javascript" src="name.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,28 @@
+Ghost
+
+What is it?
+-----------
+
+  Ghost is simple chat bot chrome app. You write something, ghost reply back.
+  It is quite simple, it uses inverted index and ranked document retrieval
+  to find best answer. You can modify answers if you don't like them, this
+  is how ghost learns new stuff. You can export your modifications.
+
+How to use it?
+--------------
+
+  Type something and press enter or click on "Ask" button. Click on "edit" if
+  you don't like answer and write something else instead.
+
+Author
+------
+
+  Dusan Halicky <dusan.halicky@gmail.com>
+
+Licence
+-------
+
+  You are allowed to use this software as is.
+  You are allowed to distribute unmodified copies of this software.
+  You are NOT allowed to create modifications.
+  You are NOT allowed to distribute modifications.

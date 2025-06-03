@@ -1,0 +1,105 @@
+/* dark theme for chat messages */
+
+/* chat */
+
+body {
+    background-color: black;
+    color: white;
+}
+#container .question .bubble {
+    background-color: #666;
+}
+#container .answer .bubble {
+    background-color: #476;
+}
+#questionbox textarea {
+    background-color: #666;
+    color: white;
+}
+#questionbox textarea::placeholder {
+    color: silver;
+}
+
+/* edits */
+
+.dh_options {
+    background-color: black;
+    color: white;
+}
+
+.dh_options input[type=text] {
+    background-color: #666;
+    color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #999
+}
+
+.dh_options button, .dh_options input[type=submit], .dh_options input[type=button] {
+    border: 1px solid #666;
+    border-radius: 3px;
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+    color: #FFF;
+    background-color: #777;
+    background-image: linear-gradient(to bottom, #777, #000);
+}
+.dh_options button:hover, .dh_options input[type=submit]:hover, .dh_options input[type=button]:hover {
+    border:1px solid #444;
+    background-color: #666;
+    background-image: linear-gradient(to bottom, #666, #222);
+}
+
+/* options, feedback */
+
+.dh_options2 {
+    background-color: black;
+    transition: opacity 0.5s linear;
+}
+
+.dh_options2 input[type=text], .dh_options2 input[type=date], .dh_options2 input[type=number], .dh_options2 select, .dh_feedback input[type=email] {
+    background-color: #666;
+    color: white;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #999
+}
+
+.dh_options2 button, .dh_options2 input[type=submit], .dh_options2 input[type=button], .dh_feedback button, .dh_contextmenu button {
+    border: 1px solid #666;
+    border-radius: 3px;
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+    color: #FFF;
+    background-color: #777;
+    background-image: linear-gradient(to bottom, #777, #000);
+}
+.dh_options2 button.green {
+    text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
+    border-bottom: 3px solid #555;
+}
+.dh_options2 button:hover, .dh_options2 input[type=submit]:hover, .dh_options2 input[type=button]:hover, .dh_feedback button:hover, .dh_contextmenu button:hover {
+    border:1px solid #444;
+    background-color: #666;
+    background-image: linear-gradient(to bottom, #666, #222);
+}
+.dh_options2 div.paid {
+    background-color: #888;
+    color: black;
+}
+
+.dh_options2 h1, .dh_options2 h2 {
+    color: silver;
+}
+
+/* feedback */
+
+.dh_feedback textarea {
+    background-color: #666;
+    color: white;
+}
+.dh_feedback textarea::placeholder {
+    color: silver;
+}
+.dh_feedback input::placeholder {
+    color: silver;
+}
+

@@ -1,0 +1,17 @@
+
+GT is 2D top-view tile-map mobile-friendly RPG rendering library using
+JavaScript and HTML Canvas. It was extracted from my game Ghosttown with
+goal to be smaller, simpler, more portable with fixed player character
+in center and smoothly moving background.
+
+Author
+
+    Dusan Halicky <dusan.halicky@gmail.com>
+
+License
+
+    You are allowed to use this software as is.
+    You are allowed to distribute unmodified copies of this software.
+    You are NOT allowed to create modifications.
+    You are NOT allowed to distribute modifications.
+

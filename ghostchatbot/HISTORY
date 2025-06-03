@@ -1,0 +1,234 @@
+2019-08-10
+- new billing library
+- fixed dark theme
+- fixed links to play store
+
+2018-11-07
+- added rename command to virtual town
+- in VT make pickaxe don't cover console buttons
+- save mobile data
+- nicer options menu icon
+
+2018-06-14
+- added option to change user and ghost icon
+- re-render chat after return from options
+- minor fix in focus handling
+
+2018-03-15
+- completely redisigned visuals (using android version)
+
+2017-12-04
+- added support for "why" questions in android version
+- better candidate debugging
+
+2017-04-24
+- fixed release script normalize test
+
+2017-03-23
+- updates for new Ghost version (without slang and max word length)
+
+2017-03-14
+- changed "Sex" to "Gender" in options
+
+2017-03-05
+- completely rewriten android version
+- fixed normalization when adding edited question
+
+2017-02-13
+- minor data cleanups
+
+2017-02-04
+- tunning css media queries for smaller mobile phones
+- on mobile clear question faster
+
+2017-01-17
+- smaller edit button
+- non-resizeable textarea
+- sans-serif font in textarea
+- fixed missing id in user character
+- only top border in textarea
+- limited text area length to 250
+
+2017-01-13
+- fixed ask and edit when user press enter on swiping keyboard
+- larger buttons on android
+- keep focus after menu actions
+
+2017-01-12
+- keyboard visible at start
+
+2016-11-28
+- added debugging console
+
+2016-11-09
+- added separate android character
+
+2016-11-07
+- fixed feedback form internet permissions
+
+2016-11-05
+- better error message when feedback cannot be sent
+- disabled edits button when there are no edits
+- don't show menu in landscape mode
+- more compact text in landscape mode
+
+2016-11-04
+- larger buttons on android
+
+2016-09-29
+- modifications for android version
+
+2016-09-28
+- appending questionmark if user asks question
+- cached index to speed up first question on mobile
+- fixed feedback form email layout on small screen
+- added multiple new resolutions for icons (72, 96, 144, 192)
+
+2016-09-14
+- fixed report when chrome is not defined
+- shorter placeholder on mobile
+- clear question on mobile
+- changed report name for mobile
+
+2016-09-13
+- fixed poll when chrome is not defined
+- updated dh library
+
+2016-09-12
+- added email note in feedback form
+
+2016-08-31
+- added height parameter to options
+- improved math support
+
+2016-07-19
+- minor data cleanup
+
+2016-07-15
+- minor math improvements
+
+2016-05-31
+- math improvements (AxBxC)
+- added ñ to stemmer
+- added typos
+
+2016-05-10
+- minor math improvements (2 typos)
+
+2016-04-24
+- major data cleanup
+- when feedback fails show error message instead of null
+
+2016-04-19
+- preparation to skip poll if question have hi score
+
+2016-04-16
+- added button for clearing question or log
+- minor math improvements (1+2+)
+- show ghost name in document.title
+- do not allow to ask empty question
+
+2016-04-09
+- minor math improvements
+
+2016-04-02
+- added /help and /exit commands
+- math handle first negative number correctly
+
+2016-03-26
+- added new mergeless version of ghost
+- parameters are now in export and they can be edited!
+- added options
+- fixed major math error (100 + 100000 was 200)
+- added "what is pi" to math
+- added prime numbers to math (is 17 prime number?)
+- added more math (a+b+c, a/b+c/d, 8 squared)
+- improved release script
+
+2016-03-20
+- added factorize
+
+2016-02-15
+- minor math improvements
+
+2016-02-13
+- added PI to math
+- added /clear command
+
+2016-01-13
+- added 2x3 and 2÷3 to math
+- logging resolution and OS for next ghost app
+
+2016-01-10
+- converted storage to new version
+
+2015-12-12
+- added very simple math support
+
+2015-12-10
+- fixed feedback form
+
+2015-12-05
+- finding similar words leave numbers as is
+
+2015-12-01
+- added ability to show picture of ghost itself (param $picture;)
+- cleaned up history
+
+2015-11-28
+- code cleanup
+- poll questions support
+- minor data cleanup
+- removed versions from this history file, only date
+- removed old feedback form
+
+2015-11-13
+- updated ghost (answer is now object, added tag support, minor improvements)
+
+2015-11-12
+- added @ as separator to tokenizer
+
+2015-11-09
+- simplified feedback form
+- removed 1 duplicate sentence (total 2539)
+
+2015-10-23
+- improved tokenizer
+
+2015-10-21
+- fixed issue with input params
+
+2015-10-14
+- removed $question; parameter
+
+2015-10-12
+- stemmer length increased to 15
+
+2015-09-30
+- fixed date, time and year parameters
+
+2015-09-25
+- changed name to "Ghost chat bot"
+
+2015-09-14
+- fixed asking same question twice
+- cleaned up few questions
+
+2015-09-10
+- added 18 new questions
+- fixed quotes
+
+2015-09-09
+- updated ghost library
+- removed dumb
+- minor data cleanup
+
+2015-08-26
+- fixed empty export
+- fixed ghost name
+
+2015-08-26
+- first version of ghost chrome app
+
+2003-08-23
+- first version of ghost
