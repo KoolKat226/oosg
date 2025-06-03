@@ -91,25 +91,25 @@
     // 1) Configuration
     // -------------------------------------
     const CACHE_NAME = 'oosgames';
-    const START_URL = '/oosg/';                // Root of your site
+    const START_URL = '/';                // Root of your site
     const ORIGIN = window.location.origin; // e.g. "https://yourdomain.com"
     const MAX_PAGES = 1000;                // Safety cap on number of pages
 
     // Pages that aren’t linked anywhere can be forced here:
     const EXTRA_URLS = [
-      '/retrobowl/index.html',
-      '/subwaysurfers/index.html',
-      '/mk64/index.html',
-      '/funnyshooter2/index.html',
-      '/eos3/index.html',
-      '/doodlejump/index.html',
-      '/corbin/index.html',
-      '/ghostchatbot/index.html',
-      '/happyfriday/index.html',
-      '/cube/index.html',
-      '/spelunky/index.html',
-      '/minecraft/index.html',
-      '/index.html',
+      './oosg/index.html?game=retrobowl',
+      './oosg/index.html?game=subwaysurfers',
+      './oosg/index.html?game=mk64',
+      './oosg/index.html?game=funnyshooter2',
+      './oosg/index.html?game=eos3',
+      './oosg/index.html?game=doodlejump',
+      './oosg/index.html?game=corbin',
+      './oosg/index.html?game=ghostchatbot',
+      './oosg/index.html?game=happyfriday',
+      './oosg/index.html?game=cube',
+      './oosg/index.html?game=spelunky/src',
+      './oosg/index.html?game=minecraft',
+      './oosg/index.html',
       // …etc
     ];
 
