@@ -1665,7 +1665,7 @@ function isDataURI(filename) {
 
 
 
-var wasmBinaryFile = 'sm64.wasm';
+var wasmBinaryFile = '../sm64.wasm';
 if (!isDataURI(wasmBinaryFile)) {
   wasmBinaryFile = locateFile(wasmBinaryFile);
 }
