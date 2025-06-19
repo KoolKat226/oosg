@@ -5,11 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OlexOS 7 Offline Feature: Games</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: Arial, sans-serif;
       color: #333;
@@ -19,6 +15,7 @@
       justify-content: flex-start;
       min-height: 100vh;
       padding: 20px;
+      background: #f5f5f5;
     }
     .save-container {
       width: 100%;
@@ -26,17 +23,12 @@
       margin-top: 50px;
       background: #fff;
       border-radius: 28px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       padding: 30px;
       text-align: center;
     }
-    .logo {
-      margin-bottom: 30px;
-    }
-    .logo img {
-      height: 80px;
-      width: auto;
-    }
+    .logo { margin-bottom: 30px; }
+    .logo img { height: 80px; width: auto; }
     .progress-wrapper {
       width: 100%;
       background-color: #eee;
@@ -49,10 +41,7 @@
       background-color: #4CAF50;
       transition: width 0.2s ease-in-out;
     }
-    .progress-text {
-      margin-top: 10px;
-      font-size: 14px;
-    }
+    .progress-text { margin-top: 10px; font-size: 14px; }
     .status {
       margin-top: 20px;
       font-size: 13px;
@@ -62,10 +51,13 @@
   </style>
 </head>
 <body>
-  <audio style="display:none" src="https://koolkat226.github.io/oos/sounds/loading.mp3" autoplay loop></audio>
+  <audio style="display:none"
+         src="https://koolkat226.github.io/oos/sounds/loading.mp3"
+         autoplay loop>
+  </audio>
   <div class="save-container">
     <div class="logo">
-      <img src="./oosgames.png" alt="My Logo" />
+      <img src="./oosgames.png" alt="Games Logo" />
     </div>
     <div class="progress-wrapper">
       <div class="progress-bar" id="progress-bar"></div>
@@ -75,11 +67,11 @@
   </div>
 
   <script>
+    // 1) Configuration
     const CACHE_NAME = 'oosgames';
-    const START_URL = '/';
-    const ORIGIN = window.location.origin;
-    const MAX_PAGES = 1000;
-
+    const START_URL  = '/';
+    const ORIGIN     = window.location.origin;
+    const MAX_PAGES  = 1000;
     const EXTRA_URLS = [
       './oosg/index.html?game=retrobowl',
       './oosg/index.html?game=subwaysurfers',
@@ -107,40 +99,45 @@
       './oosg/cube/index.html',
       './oosg/spelunky/index.html',
       './oosg/minecraft/index.html',
-      './oosg/mario64/index.html',
+      './oosg/mario64/index.html'
     ];
 
+    // 2) DOM references
     const progressBarEl  = document.getElementById('progress-bar');
     const progressTextEl = document.getElementById('progress-text');
     const statusTextEl   = document.getElementById('status-text');
 
+    // 3) Detect fresh install vs update
     const wasInstalledBefore = !!localStorage.getItem('oosgames_urls');
-    const actionLabel = wasInstalledBefore ? 'Updating' : 'Installing';
+    const actionLabel       = wasInstalledBefore ? 'Updating' : 'Installing';
 
-    localStorage.removeItem('oosgames_urls'); // clean slate
+    // Clear old record so we overwrite it below
+    localStorage.removeItem('oosgames_urls');
 
+    // 4) Register the service worker
     async function registerServiceWorker() {
       if (!('serviceWorker' in navigator)) {
-        statusTextEl.textContent = '❌ Failed to install OOS Game Library';
+        statusTextEl.textContent = '❌ Service worker unsupported';
         throw new Error('SW unsupported');
       }
       try {
-        const reg = await navigator.serviceWorker.register('./service-worker.js');
-        statusTextEl.textContent = `✅ Service worker registered`;
+        await navigator.serviceWorker.register('./service-worker.js');
+        statusTextEl.textContent = '✅ Service worker registered';
         await navigator.serviceWorker.ready;
-        statusTextEl.textContent = `✅ Service worker is active`;
+        statusTextEl.textContent = '✅ Service worker active';
       } catch (err) {
-        statusTextEl.textContent = '❌ Failed to install OOS Game Library';
+        statusTextEl.textContent = '❌ Failed to register SW';
         throw err;
       }
     }
 
+    // 5) Crawl your site for page URLs
     async function crawlSiteAndCollectPageURLs() {
       const visitedPages = new Set();
-      const queue = [new URL(START_URL, ORIGIN).href];
-      const collectedPages = new Set();
+      const queue        = [new URL(START_URL, ORIGIN).href];
+      const collected    = new Set();
 
-      EXTRA_URLS.forEach((rel) => {
+      EXTRA_URLS.forEach(rel => {
         try {
           const abs = new URL(rel, ORIGIN).href;
           if (abs.startsWith(ORIGIN)) queue.push(abs);
@@ -163,9 +160,9 @@
           continue;
         }
 
-        collectedPages.add(pageURL);
+        collected.add(pageURL);
         const doc = new DOMParser().parseFromString(htmlText, 'text/html');
-        doc.querySelectorAll('a[href]').forEach((anchor) => {
+        doc.querySelectorAll('a[href]').forEach(anchor => {
           const raw = anchor.getAttribute('href');
           if (
             raw &&
@@ -184,29 +181,37 @@
         });
       }
 
-      return Array.from(collectedPages);
+      return Array.from(collected);
     }
 
+    // 6) Discover assets via hidden iframes
     async function discoverAssetsFromPages(pageURLs) {
       const discoveredAssets = new Set();
 
       for (let i = 0; i < pageURLs.length; i++) {
         const pageURL = pageURLs[i];
-        statusTextEl.textContent = `🔄 ${actionLabel} OOS Game Library (${i + 1}/${pageURLs.length})`;
+        statusTextEl.textContent =
+          `🔄 ${actionLabel} OOS Game Library (${i+1}/${pageURLs.length})`;
 
         const iframe = document.createElement('iframe');
-        iframe.style.position = 'fixed';
-        iframe.style.left = '-9999px';
-        iframe.style.top = '-9999px';
-        iframe.style.width = '1px';
-        iframe.style.height = '1px';
+        Object.assign(iframe.style, {
+          position: 'fixed',
+          left: '-9999px',
+          top: '-9999px',
+          width: '1px',
+          height: '1px'
+        });
         iframe.src = pageURL;
         document.body.appendChild(iframe);
 
-        await new Promise((resolve) => {
-          let resolved = false;
-          iframe.addEventListener('load', () => { if (!resolved) { resolved = true; resolve(); } });
-          setTimeout(() => { if (!resolved) { resolved = true; resolve(); } }, 15000);
+        await new Promise(resolve => {
+          let done = false;
+          iframe.addEventListener('load', () => {
+            if (!done) { done = true; resolve(); }
+          });
+          setTimeout(() => {
+            if (!done) { done = true; resolve(); }
+          }, 15000);
         });
 
         await new Promise(r => setTimeout(r, 1000));
@@ -226,10 +231,14 @@
       return Array.from(discoveredAssets);
     }
 
+    // 7) Cache everything (with cache-clear on update!)
     async function cacheAllResources(urls) {
+      // **DELETE** the old cache so we force fresh network fetches
+      await caches.delete(CACHE_NAME);
+
       const cache = await caches.open(CACHE_NAME);
       const total = urls.length;
-      let count = 0;
+      let count   = 0;
 
       for (let resourceURL of urls) {
         try {
@@ -238,16 +247,22 @@
         finally {
           count++;
           const pct = Math.round((count / total) * 100);
-          progressBarEl.style.width = pct + '%';
+          progressBarEl.style.width  = pct + '%';
           progressTextEl.textContent = `${count} / ${total}`;
         }
       }
 
-      statusTextEl.textContent = `✅ OOS Game Library ${wasInstalledBefore ? 'updated' : 'installed'}!`;
+      statusTextEl.textContent =
+        `✅ OOS Game Library ${wasInstalledBefore ? 'updated' : 'installed'}!`;
+
+      // Save the new list
       localStorage.setItem('oosgames_urls', JSON.stringify(urls));
+
+      // Redirect home
       window.location.href = 'https://koolkat226.github.io/oos/';
     }
 
+    // 8) Orchestrator
     async function runSaveProcess() {
       try {
         await registerServiceWorker();
@@ -279,7 +294,8 @@
         return;
       }
 
-      statusTextEl.textContent = `📥 ${actionLabel} ${allURLs.length} resources…`;
+      statusTextEl.textContent =
+        `📥 ${actionLabel} ${allURLs.length} resources…`;
       await cacheAllResources(allURLs);
     }
 
