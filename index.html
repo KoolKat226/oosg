@@ -116,5 +116,37 @@ if (game && gamesRequiringClickToRefocus[game]) {
 
 
   </script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Disable right-click context menu globally
+  document.addEventListener('contextmenu', e => {
+    e.preventDefault();
+  });
+
+  // 2. Block Ctrl+I, Ctrl+U, Ctrl+S
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey) {
+      const forbidden = ['i', 'u', 's'];
+      if (forbidden.includes(e.key.toLowerCase())) {
+        e.preventDefault();
+      }
+    }
+  });
+
+  // 3. Prevent dragging of any element (images, links, etc.)
+  document.addEventListener('dragstart', e => {
+    e.preventDefault();
+  });
+
+  // 4. Disable text selection except inside inputs/textareas
+  document.addEventListener('selectstart', e => {
+    const tag = e.target.tagName.toLowerCase();
+    if (tag !== 'input' && tag !== 'textarea') {
+      e.preventDefault();
+    }
+  });
+});
+</script>
+
 </body>
 </html>
