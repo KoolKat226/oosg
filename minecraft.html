@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Game Loader</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      height: 100%;
+      overflow: hidden;
+    }
+    iframe {
+      width: 100vw;
+      height: 100vh;
+      border: none;
+      display: block;
+    }
+    .error {
+      color: white;
+      font-family: sans-serif;
+      text-align: center;
+      padding-top: 40vh;
+      font-size: 2rem;
+    }
+    #overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, .1);
+backdrop-filter: saturate(180%) blur(4px);
+      z-index: 9999;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      color: white;
+      font-size: 1.5rem;
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div id="error" class="error" style="display: none;">Error launching software</div>
+  <iframe id="gameFrame" style="display: none;"></iframe>
+  <div id="overlay"></div>
+<script>
+function toggleBackdropFilter(enable = null) {
+  const el = document.getElementById('overlay');
+  if (!el) return;
+
+  const activeFilter = 'saturate(180%) blur(4px)';
+  const current = getComputedStyle(el).backdropFilter || '';
+
+  const isEnabled = current.includes('blur');
+
+  // Auto toggle if enable is not passed
+  if (enable === null) enable = !isEnabled;
+
+  if (enable) {
+    el.style.backdropFilter = activeFilter;
+    el.style.webkitBackdropFilter = activeFilter; // For Safari
+  } else {
+    el.style.backdropFilter = 'none';
+    el.style.webkitBackdropFilter = 'none';
+  }
+}
+</script>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const game = params.get('game')?.toLowerCase();
+
+    // Define which games need overlay protection
+    const gamesRequiringClickToRefocus = {
+      "minecraft": true,
+      "mario64": true,
+      "doodle jump": false
+    };
+
+    const iframe = document.getElementById('gameFrame');
+    const overlay = document.getElementById('overlay');
+
+    if (game) {
+      iframe.src = `https://koolkat226.github.io/oosm/`;
+      iframe.style.display = 'block';
+    } else {
+      document.getElementById('error').style.display = 'block';
+    }
+
+if (game && gamesRequiringClickToRefocus[game]) {
+  // Show overlay immediately on load
+  overlay.style.display = 'flex';
+  toggleBackdropFilter(true);
+
+  // Listen for mouse leaving the window
+  document.addEventListener("mouseout", function (e) {
+    if (!e.relatedTarget && !e.toElement) {
+      overlay.style.display = 'flex';
+      toggleBackdropFilter(true);
+    }
+  });
+
+  // Hide overlay on click and refocus
+  overlay.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    iframe.focus();
+    toggleBackdropFilter(false);
+  });
+}
+
+
+
+  </script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  // 1. Disable right-click context menu globally
+  document.addEventListener('contextmenu', e => {
+    e.preventDefault();
+  });
+
+  // 2. Block Ctrl+I, Ctrl+U, Ctrl+S
+  document.addEventListener('keydown', e => {
+    if (e.ctrlKey) {
+      const forbidden = ['i', 'u', 's'];
+      if (forbidden.includes(e.key.toLowerCase())) {
+        e.preventDefault();
+      }
+    }
+  });
+
+  // 3. Prevent dragging of any element (images, links, etc.)
+  document.addEventListener('dragstart', e => {
+    e.preventDefault();
+  });
+
+  // 4. Disable text selection except inside inputs/textareas
+  document.addEventListener('selectstart', e => {
+    const tag = e.target.tagName.toLowerCase();
+    if (tag !== 'input' && tag !== 'textarea') {
+      e.preventDefault();
+    }
+  });
+});
+</script>
+
+</body>
+</html>
