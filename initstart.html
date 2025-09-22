@@ -353,7 +353,20 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 </script>
+<script>
+(function() {
+  // Check if this site was visited before
+  if (localStorage.getItem("site_visited")) {
+    // Already visited → redirect
+    window.location.href = "https://koolkat226.github.io/oos/index.html";
+  } else {
+    // First visit → mark as visited
+    localStorage.setItem("site_visited", "true");
+  }
+})();
+</script>
 
 </body>
 </html>
+
 
